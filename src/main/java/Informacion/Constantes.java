@@ -18,13 +18,14 @@ public class Constantes {
     * */
 
 
-    final String NUEVO = "-n";
-    final String MODIFICAR = "-m";
-    final String ELIMINAR = "-e";
+    public final String NUEVO = "-n";
+    public final String MODIFICAR = "-m";
+    public final String ELIMINAR = "-e";
+    public final String SALIR_PROGRAMA = "-s";
 
-    final String SERVICIO = "-servicio";
-    final String PAGO = "-pago";
-    final String MES = "-mes";
+    public final String SERVICIO = "-servicio";
+    public final String PAGO = "-pago";
+    public final String MES = "-mes";
 
     final int MAX_SERVICIOS_MOSTRAR = 20;
     final int MAX_MES_MOSTRAR = 20;
