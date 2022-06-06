@@ -27,6 +27,7 @@ public class Constantes {
     public final String PAGO = "-pago";
     public final String MES = "-mes";
 
+    final int ID_CONSTANTE_SEPARADOR = 32;
     final int MAX_SERVICIOS_MOSTRAR = 20;
     final int MAX_MES_MOSTRAR = 20;
     final int MAX_PAGO_MOSTRAR = 20;
