@@ -1,14 +1,33 @@
 package Logica;
 
+import Informacion.Constantes;
+
+import java.sql.Connection;
 import java.util.List;
 
 public class Logica {
 
-    char[] aux;
+    String segmento;
+    String[] Parametros;
+    Constantes cte = new Constantes();
 
-//    private List<String> dividirenPartes(String codigo){
-//
-//    }
+    //Obtener partes del comando
+    public String obtenerParametro(String codigo){
+        segmento = "";
+        for (int i = 0; i <= codigo.length(); i++){
+
+            if (codigo.charAt(i) == cte.ID_CONSTANTE_SEPARADOR){
+                break;
+            }
+
+            segmento = segmento + codigo.charAt(i);
+
+        }
+
+        return segmento;
+    }
+
+//    Obtener conjunto de Partes
 
     /*Verificación de parametros*/
 
