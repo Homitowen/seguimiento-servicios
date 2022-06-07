@@ -48,4 +48,12 @@ public class Logica {
         return true;
     }
 
+
+    public String getSegmento() {
+        return this.segmento;
+    }
+
+    public void setSegmento(String segmento) {
+        this.segmento = segmento;
+    }
 }
