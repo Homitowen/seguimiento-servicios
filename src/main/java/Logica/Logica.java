@@ -2,13 +2,24 @@ package Logica;
 
 import Informacion.Constantes;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class Logica {
 
     String lineaEntrada;
-    String[] Parametros;
+
+    ArrayList<String> codigoSeparado = new ArrayList<String>();
+    ArrayList<String> parametrosCargados = new ArrayList<String>();
+
+
+    StringBuilder unParametro;
+
 
     boolean estadoPrograma = false;
+    boolean esParametroCompuesto;
     Constantes cte = new Constantes();
+    private StringBuilder acumulador;
 
     public Logica(){
         this.estadoPrograma = false;
@@ -17,9 +28,42 @@ public class Logica {
         this.lineaEntrada = lineaEntrada;
     }
 
-//    Obtener conjunto de Partes
+    /*Tengo que lograr:
+    * - identificar comillas
+    * - separar en funcion a lo anterior*/
 
-    /*Verificación de parametros*/
+    /*para separar la linea de entrada*/
+    private void separarPorPartes(){
+        this.codigoSeparado.add(this.lineaEntrada.split(cte.ID_CONSTANTE_SEPARADOR));
+    }
+
+    /*Hacer parametros en funcion de si son compuestos
+    * Cuando comienza con X
+    * Cuando no lo tiene
+    * Cuando Termina con X
+    * */
+    private void armarParametros(){
+        separarPorPartes();
+        for(String i : codigoSeparado){
+            this.esParametroCompuesto = false;
+            this.unParametro = new StringBuilder();
+            this.acumulador = new StringBuilder();
+
+            if (i.startsWith(cte.ID_CONSTANTE_COMPUESTO) & i.endsWith(cte.ID_CONSTANTE_COMPUESTO)) {
+                this.unParametro.append(i.replace(cte.ID_CONSTANTE_COMPUESTO, ""));
+                continue;
+            } else if (i.startsWith(cte.ID_CONSTANTE_COMPUESTO)){
+                this.esParametroCompuesto = true;
+                this.acumulador.append(i.replace(cte.ID_CONSTANTE_COMPUESTO, ""));
+            } else if (i.endsWith(cte.ID_CONSTANTE_COMPUESTO)){
+                this.acumulador.append(i.replace(cte.ID_CONSTANTE_COMPUESTO, ""));
+            }
+
+            this.unParametro.append( this.acumulador.toString() );
+
+
+        }
+    }
 
     private boolean verificarComando(){
 
