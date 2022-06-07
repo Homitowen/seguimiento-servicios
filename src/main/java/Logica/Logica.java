@@ -2,29 +2,19 @@ package Logica;
 
 import Informacion.Constantes;
 
-import java.sql.Connection;
-import java.util.List;
-
 public class Logica {
 
-    String segmento;
+    String lineaEntrada;
     String[] Parametros;
+
+    boolean estadoPrograma = false;
     Constantes cte = new Constantes();
 
-    //Obtener partes del comando
-    public String obtenerParametro(String codigo){
-        segmento = "";
-        for (int i = 0; i <= codigo.length(); i++){
-
-            if (codigo.charAt(i) == cte.ID_CONSTANTE_SEPARADOR){
-                break;
-            }
-
-            segmento = segmento + codigo.charAt(i);
-
-        }
-
-        return segmento;
+    public Logica(){
+        this.estadoPrograma = false;
+    }
+    public Logica(String lineaEntrada) {
+        this.lineaEntrada = lineaEntrada;
     }
 
 //    Obtener conjunto de Partes
@@ -49,11 +39,19 @@ public class Logica {
     }
 
 
-    public String getSegmento() {
-        return this.segmento;
+    public String getLineaEntrada() {
+        return this.lineaEntrada;
     }
 
-    public void setSegmento(String segmento) {
-        this.segmento = segmento;
+    public void setLineaEntrada(String lineaEntrada) {
+        this.lineaEntrada = lineaEntrada;
+    }
+
+    public boolean isEstadoPrograma() {
+        return this.estadoPrograma;
+    }
+
+    public void setEstadoPrograma(boolean estadoPrograma) {
+        this.estadoPrograma = estadoPrograma;
     }
 }
