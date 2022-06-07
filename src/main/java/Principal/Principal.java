@@ -17,12 +17,11 @@ public class Principal {
         Logica logica = new Logica();
 
         while (!logica.isEstadoPrograma()) {
-            lineaEntrada = cargar.nextLine();
-
             System.out.println("INGRESAR COMANDO");
+            lineaEntrada = cargar.nextLine();
             logica = new Logica(lineaEntrada);
 
-            System.out.println(logica.getLineaEntrada());
+            logica.mostrarParametros();
 
         }
 

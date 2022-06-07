@@ -26,15 +26,24 @@ public class Logica {
     }
     public Logica(String lineaEntrada) {
         this.lineaEntrada = lineaEntrada;
+        armarParametros();
     }
 
+
+    public void mostrarParametros(){
+        for (String i : this.parametrosCargados){
+            System.out.println(i);
+        }
+    }
     /*Tengo que lograr:
     * - identificar comillas
     * - separar en funcion a lo anterior*/
 
     /*para separar la linea de entrada*/
     private void separarPorPartes(){
-        this.codigoSeparado.add(this.lineaEntrada.split(cte.ID_CONSTANTE_SEPARADOR));
+        for (String i : this.lineaEntrada.split(cte.ID_CONSTANTE_SEPARADOR)){
+            this.codigoSeparado.add(i);
+        }
     }
 
     /*Hacer parametros en funcion de si son compuestos
@@ -51,7 +60,6 @@ public class Logica {
 
             if (i.startsWith(cte.ID_CONSTANTE_COMPUESTO) & i.endsWith(cte.ID_CONSTANTE_COMPUESTO)) {
                 this.unParametro.append(i.replace(cte.ID_CONSTANTE_COMPUESTO, ""));
-                continue;
             } else if (i.startsWith(cte.ID_CONSTANTE_COMPUESTO)){
                 this.esParametroCompuesto = true;
                 this.acumulador.append(i.replace(cte.ID_CONSTANTE_COMPUESTO, ""));
@@ -59,8 +67,8 @@ public class Logica {
                 this.acumulador.append(i.replace(cte.ID_CONSTANTE_COMPUESTO, ""));
             }
 
-            this.unParametro.append( this.acumulador.toString() );
-
+            this.unParametro.append(this.acumulador);
+            this.parametrosCargados.add(this.unParametro.toString());
 
         }
     }
