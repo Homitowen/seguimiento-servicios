@@ -28,6 +28,7 @@ public class Logica {
         this.lineaEntrada = lineaEntrada;
         armarParametros();
         verificarComando();
+        verificarSubComando();
     }
 
 
@@ -110,6 +111,8 @@ public class Logica {
         } else if (this.parametrosCargados.get(1).equals(cte.PAGO)){
             System.out.println("sobre pago");
             return true;
+        } else {
+            System.out.println("Subcomando Error");
         }
         return false;
     }
