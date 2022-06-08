@@ -94,6 +94,8 @@ public class Logica {
         } else if (this.parametrosCargados.get(0).equals(cte.ELIMINAR)){
             System.out.println("hacer Eliminacion");
             return true;
+        } else {
+            System.out.println("Comando Error");
         }
         return false;
     }
