@@ -21,8 +21,25 @@ public class Mes {
         this.idMes = idMes;
     }
 
+    /*Obtengo todos los parametros, en el orden:
+    * - id mes
+    * - id servicio
+    * - nombre servicio
+    * - fecha pago
+    * - pago
+    * */
     public ArrayList<String> obtenerMes(){
+        ArrayList<String> datos = new ArrayList<String>();
 
+        datos.add(Integer.toString(this.idMes));
+
+        datos.add(Integer.toString(this.servicio.getId_Servicio()));
+        datos.add(this.servicio.getNombre());
+
+        datos.add(this.pago.getFecha().toString());
+        datos.add(Integer.toString(this.pago.getPago()));
+
+        return datos;
     }
 
     public Servicios getServicio() {
