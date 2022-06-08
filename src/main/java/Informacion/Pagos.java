@@ -6,6 +6,7 @@ public class Pagos {
     private Calendar fecha;
     private int Pago;
 
+//    Para generar o acceder
     public Pagos(Calendar fecha, int pago) {
         this.fecha = fecha;
         Pago = pago;
