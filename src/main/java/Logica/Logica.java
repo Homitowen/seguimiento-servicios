@@ -95,6 +95,8 @@ public class Logica {
         } else if (this.parametrosCargados.get(0).equals(cte.ELIMINAR)){
             System.out.println("hacer Eliminacion");
             return true;
+        } else if (this.parametrosCargados.get(0).equals(cte.SALIR_PROGRAMA)){
+            System.out.println("Saliendo .........");
         } else {
             System.out.println("Comando Error");
         }
@@ -102,18 +104,27 @@ public class Logica {
     }
 
     private boolean verificarSubComando(){
-        if (this.parametrosCargados.get(1).equals(cte.MES)){
-            System.out.println("Sobre mes");
-            return true;
-        } else if (this.parametrosCargados.get(1).equals(cte.SERVICIO)){
-            System.out.println("sobre servicio");
-            return true;
-        } else if (this.parametrosCargados.get(1).equals(cte.PAGO)){
-            System.out.println("sobre pago");
-            return true;
-        } else {
-            System.out.println("Subcomando Error");
+
+        try {
+
+            if (this.parametrosCargados.get(1).equals(cte.MES)){
+                System.out.println("Sobre mes");
+                return true;
+            } else if (this.parametrosCargados.get(1).equals(cte.SERVICIO)){
+                System.out.println("sobre servicio");
+                return true;
+            } else if (this.parametrosCargados.get(1).equals(cte.PAGO)){
+                System.out.println("sobre pago");
+                return true;
+            } else {
+                System.out.println("Subcomando Error");
+            }
+            return false;
+
+        } catch (Exception e){
+            System.out.println("Faltó subcomando");
         }
+
         return false;
     }
 
