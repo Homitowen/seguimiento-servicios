@@ -55,22 +55,28 @@ public class Logica {
     private void armarParametros(){
         separarPorPartes();
         for(String i : codigoSeparado){
-
+//            Para los que deben contener comillas
             if (i.startsWith(cte.ID_CONSTANTE_COMPUESTO) & i.endsWith(cte.ID_CONSTANTE_COMPUESTO)) {
                 this.acumulador = new StringBuilder();
                 this.unParametro = new StringBuilder();
 
                 this.parametrosCargados.add(i.replace(cte.ID_CONSTANTE_COMPUESTO, ""));
+//                Para los que comienzan con comilla
             } else if (i.startsWith(cte.ID_CONSTANTE_COMPUESTO)){
                 this.esParametroCompuesto = true;
                 this.acumulador = new StringBuilder();
                 this.acumulador.append(i.replace(cte.ID_CONSTANTE_COMPUESTO, "")+" ");
+//                Para los que terminan con comilla
             } else if (i.endsWith(cte.ID_CONSTANTE_COMPUESTO)){
-                this.esParametroCompuesto = true;
+                this.esParametroCompuesto = false;
                 this.acumulador.append(i.replace(cte.ID_CONSTANTE_COMPUESTO, ""));
                 this.parametrosCargados.add(this.acumulador.toString());
+//                Para los que no son extremos de un parametro compuesto
             } else if (this.esParametroCompuesto){
                 this.acumulador.append(i.replace(cte.ID_CONSTANTE_COMPUESTO, "")+" ");
+//                Para los que no tienen comillas ni son parte de un parametro compuesto
+            } else {
+                this.parametrosCargados.add(i);
             }
 
 
