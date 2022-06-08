@@ -27,6 +27,7 @@ public class Logica {
     public Logica(String lineaEntrada) {
         this.lineaEntrada = lineaEntrada;
         armarParametros();
+        verificarComando();
     }
 
 
@@ -78,12 +79,31 @@ public class Logica {
     }
 
     private boolean verificarComando(){
-
-        return true;
+        if (this.parametrosCargados.get(0).equals(cte.NUEVO)){
+            System.out.println("hacer Nuevo");
+            return true;
+        } else if (this.parametrosCargados.get(0).equals(cte.MODIFICAR)){
+            System.out.println("hacer Modificacion");
+            return true;
+        } else if (this.parametrosCargados.get(0).equals(cte.ELIMINAR)){
+            System.out.println("hacer Eliminacion");
+            return true;
+        }
+        return false;
     }
 
     private boolean verificarSubComando(){
-        return true;
+        if (this.parametrosCargados.get(1).equals(cte.MES)){
+            System.out.println("Sobre mes");
+            return true;
+        } else if (this.parametrosCargados.get(1).equals(cte.SERVICIO)){
+            System.out.println("sobre servicio");
+            return true;
+        } else if (this.parametrosCargados.get(1).equals(cte.PAGO)){
+            System.out.println("sobre pago");
+            return true;
+        }
+        return false;
     }
 
     private boolean verificarLetras(){
