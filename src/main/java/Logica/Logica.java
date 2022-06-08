@@ -1,9 +1,13 @@
 package Logica;
 
 import Informacion.Constantes;
+import Informacion.Mes;
+import Informacion.Pagos;
+import Informacion.Servicios;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class Logica {
 
@@ -11,9 +15,11 @@ public class Logica {
 
     ArrayList<String> codigoSeparado = new ArrayList<String>();
     ArrayList<String> parametrosCargados = new ArrayList<String>();
-
-
     StringBuilder unParametro;
+
+    Servicios servicios;
+    Pagos pagos;
+    Mes mes;
 
 
     boolean estadoPrograma = false;
@@ -134,6 +140,20 @@ public class Logica {
 
     private boolean verificarNumeros(){
         return true;
+    }
+
+
+/*    Para cargar servicio
+    2 - id
+    3 - nombre*/
+    private void cargarServicio(){
+        this.servicios = new Servicios(this.parametrosCargados.get(3),Integer.parseInt(this.parametrosCargados.get(2)));
+    }
+    /*Para cargar pago
+    * 2- fecha
+    * 3- pago*/
+    private void cargarPago(){
+        this.pagos = new Pagos(Calendar.this.parametrosCargados.get(2))
     }
 
 
