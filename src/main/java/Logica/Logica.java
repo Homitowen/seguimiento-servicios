@@ -54,21 +54,25 @@ public class Logica {
     private void armarParametros(){
         separarPorPartes();
         for(String i : codigoSeparado){
-            this.esParametroCompuesto = false;
-            this.unParametro = new StringBuilder();
-            this.acumulador = new StringBuilder();
 
             if (i.startsWith(cte.ID_CONSTANTE_COMPUESTO) & i.endsWith(cte.ID_CONSTANTE_COMPUESTO)) {
-                this.unParametro.append(i.replace(cte.ID_CONSTANTE_COMPUESTO, ""));
+                this.acumulador = new StringBuilder();
+                this.unParametro = new StringBuilder();
+
+                this.parametrosCargados.add(i.replace(cte.ID_CONSTANTE_COMPUESTO, ""));
             } else if (i.startsWith(cte.ID_CONSTANTE_COMPUESTO)){
                 this.esParametroCompuesto = true;
-                this.acumulador.append(i.replace(cte.ID_CONSTANTE_COMPUESTO, ""));
+                this.acumulador = new StringBuilder();
+                this.acumulador.append(i.replace(cte.ID_CONSTANTE_COMPUESTO, "")+" ");
             } else if (i.endsWith(cte.ID_CONSTANTE_COMPUESTO)){
+                this.esParametroCompuesto = true;
                 this.acumulador.append(i.replace(cte.ID_CONSTANTE_COMPUESTO, ""));
+                this.parametrosCargados.add(this.acumulador.toString());
+            } else if (this.esParametroCompuesto){
+                this.acumulador.append(i.replace(cte.ID_CONSTANTE_COMPUESTO, "")+" ");
             }
 
-            this.unParametro.append(this.acumulador);
-            this.parametrosCargados.add(this.unParametro.toString());
+
 
         }
     }
