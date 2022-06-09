@@ -177,7 +177,7 @@ public class Logica {
     private void cargarMes(){
         pedirServicio();
         LocalDate fecha = LocalDate.parse(siguienteParametro());
-        double pago = Double.parseDouble(siguienteParametro());
+        double pago = controlarPago();
         this.mes = new Mes(this.servicios, fecha, pago);
     }
     /*Para pedir mes. necesita id
@@ -187,8 +187,39 @@ public class Logica {
     private void pedirMes(){
         int id = Integer.parseInt(parametroActual());
         LocalDate fecha = LocalDate.parse(siguienteParametro());
-        double pago = Double.parseDouble(siguienteParametro());
+        double pago = controlarPago();
         this.mes = new Mes(id, this.servicios, fecha, pago);
+    }
+
+    /*Control de numero de pago
+    * Que las comas se conviertan en puntos
+    * Que solo exista un punto, el que separa de entero a decimal
+    * Puede ser cero
+    * */
+    private double controlarPago(){
+        String dato = siguienteParametro();
+        int contador = 0;
+        ArrayList<Integer> posicion = new ArrayList<>();
+        StringBuilder arreglado;
+
+//        Control y contador
+        for (int i = 0; i < dato.length(); i++){
+            if ((dato.charAt(i) <= '9' & dato.charAt(i) >= '0') | dato.charAt(i) == '.' | dato.charAt(i) == ','){
+                dato = dato.replace(',','.');
+                if (dato.charAt(i) == '.'){
+                    contador++;
+                    posicion.add(i);
+                }
+            } else {
+                System.out.println("no es DOUBLE");
+            }
+        }
+        arreglado = new StringBuilder(dato);
+//        dejar un punto
+        for (int i = 0; i < posicion.size()-1; i++){
+            arreglado = arreglado.deleteCharAt(posicion.get(i));
+        }
+        return Double.parseDouble(arreglado.toString());
     }
 
     public String getLineaEntrada() {
