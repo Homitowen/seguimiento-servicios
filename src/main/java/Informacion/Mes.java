@@ -78,4 +78,14 @@ public class Mes {
     public void setPago(double pago) {
         this.pago = pago;
     }
+
+    @Override
+    public String toString() {
+        return "Mes{" +
+                "idMes=" + idMes +
+                ", "+ servicio.toString() +
+                ", fechaPago=" + fechaPago +
+                ", pago=" + pago +
+                '}';
+    }
 }
