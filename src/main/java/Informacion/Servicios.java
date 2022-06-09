@@ -30,4 +30,12 @@ public class Servicios {
     public void setId_Servicio(int id_Servicio) {
         this.id_Servicio = id_Servicio;
     }
+
+    @Override
+    public String toString() {
+        return "Servicios{" +
+                "nombre='" + nombre + '\'' +
+                ", id_Servicio=" + id_Servicio +
+                '}';
+    }
 }

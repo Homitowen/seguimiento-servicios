@@ -134,6 +134,7 @@ public class Logica {
             } else if (this.parametrosCargados.get(cte.POS_SUBCOM).equals(cte.SERVICIO)){
                 System.out.println("sobre servicio");
                 cargarServicio();
+                mostrarServicio();
                 return true;
             } else if (this.parametrosCargados.get(cte.POS_SUBCOM).equals(cte.PAGO)){
                 System.out.println("sobre pago");
@@ -166,7 +167,7 @@ public class Logica {
     /*Para pedir servicio. necesita id*/
     private void pedirServicio(){
         int id = Integer.parseInt(parametroActual());
-        String nombre = this.parametrosCargados.get(cte.POS_SERV_NOM);
+        String nombre = siguienteParametro();
         this.servicios = new Servicios(nombre, id);
     }
 
@@ -179,8 +180,8 @@ public class Logica {
     * 2 - fecha
     * 3 - pago*/
     private void cargarMes(){
-        LocalDate fecha = LocalDate.parse(this.parametrosCargados.get(cte.POS_MES_FECHA));
-        double pago = Double.parseDouble(this.parametrosCargados.get(cte.POS_MES_PAGO));
+        LocalDate fecha = LocalDate.parse(siguienteParametro());
+        double pago = Double.parseDouble(siguienteParametro());
         this.mes = new Mes(this.servicios, fecha, pago);
     }
     /*Para pedir mes. necesita id
