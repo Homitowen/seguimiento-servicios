@@ -1,24 +1,28 @@
 package Informacion;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class Mes {
-    private Servicios servicio;
-    private Pagos pago;
     private int idMes;
+    private Servicios servicio;
+    private Calendar fechaPago;
+    private double pago;
 
-//    Para generar mes
-    public Mes(Servicios servicio, Pagos pago) {
+//    Para generar mes. no tiene idMes
+    public Mes(Servicios servicio, Calendar fechaPago, double pago) {
         this.servicio = servicio;
+        this.fechaPago = fechaPago;
         this.pago = pago;
     }
 
-//    Para ver un mes cargado
 
-    public Mes(Servicios servicio, Pagos pago, int idMes) {
-        this.servicio = servicio;
-        this.pago = pago;
+//    Para ver / modificar / eliminar un mes cargado. tiene idMes
+    public Mes(int idMes, Servicios servicio, Calendar fechaPago, double pago) {
         this.idMes = idMes;
+        this.servicio = servicio;
+        this.fechaPago = fechaPago;
+        this.pago = pago;
     }
 
     /*Obtengo todos los parametros, en el orden:
@@ -36,10 +40,18 @@ public class Mes {
         datos.add(Integer.toString(this.servicio.getId_Servicio()));
         datos.add(this.servicio.getNombre());
 
-        datos.add(this.pago.getFecha().toString());
-        datos.add(Integer.toString(this.pago.getPago()));
+        datos.add(this.fechaPago.toString());
+        datos.add(Double.toString(this.pago));
 
         return datos;
+    }
+
+    public int getIdMes() {
+        return this.idMes;
+    }
+
+    public void setIdMes(int idMes) {
+        this.idMes = idMes;
     }
 
     public Servicios getServicio() {
@@ -50,11 +62,19 @@ public class Mes {
         this.servicio = servicio;
     }
 
-    public Pagos getPago() {
+    public Calendar getFechaPago() {
+        return this.fechaPago;
+    }
+
+    public void setFechaPago(Calendar fechaPago) {
+        this.fechaPago = fechaPago;
+    }
+
+    public double getPago() {
         return this.pago;
     }
 
-    public void setPago(Pagos pago) {
+    public void setPago(double pago) {
         this.pago = pago;
     }
 }
