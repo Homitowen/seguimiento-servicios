@@ -21,9 +21,6 @@ public class Principal {
             lineaEntrada = cargar.nextLine();
             logica = new Logica(lineaEntrada);
 
-            logica.mostrarParametros();
-
-
         }
 
 

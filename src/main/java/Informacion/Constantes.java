@@ -32,17 +32,12 @@ public class Constantes {
     public final int MAX_SERVICIOS_MOSTRAR = 20;
     public final int MAX_MES_MOSTRAR = 20;
     public final int MAX_PAGO_MOSTRAR = 20;
-    public final int MAX_PARAMETROS = 7;
+    public final int MAX_PARAMETROS = 9;
 
     public final int POS_OPERACION = 0;
     public final int POS_COM = 0;
     public final int POS_SUBCOM = 1;
 
     public final int POS_DATOS = 2;
-    public final int POS_SERV_ID = 2;
-    public final int POS_SERV_NOM = 3;
-    public final int POS_MES_ID = 4;
-    public final int POS_MES_FECHA = 5;
-    public final int POS_MES_PAGO = 6;
 
 }

@@ -39,12 +39,6 @@ public class Logica {
         verificarSubComando();
     }
 
-
-    public void mostrarParametros(){
-        for (String i : this.parametrosCargados){
-            System.out.println(i);
-        }
-    }
     /*Tengo que lograr:
     * - identificar comillas
     * - separar en funcion a lo anterior*/
@@ -130,6 +124,8 @@ public class Logica {
 
             if (this.parametrosCargados.get(cte.POS_SUBCOM).equals(cte.MES)){
                 System.out.println("Sobre mes");
+                pedirServicio();
+                mostrarServicio();
                 return true;
             } else if (this.parametrosCargados.get(cte.POS_SUBCOM).equals(cte.SERVICIO)){
                 System.out.println("sobre servicio");
@@ -189,9 +185,9 @@ public class Logica {
     * 3 - fecha
     * 4 - pago*/
     private void pedirMes(){
-        int id = Integer.parseInt(this.parametrosCargados.get(cte.POS_MES_ID));
-        LocalDate fecha = LocalDate.parse(this.parametrosCargados.get(3));
-        double pago = Double.parseDouble(this.parametrosCargados.get(4));
+        int id = Integer.parseInt(parametroActual());
+        LocalDate fecha = LocalDate.parse(siguienteParametro());
+        double pago = Double.parseDouble(siguienteParametro());
         this.mes = new Mes(id, this.servicios, fecha, pago);
     }
 
