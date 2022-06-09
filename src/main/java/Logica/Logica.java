@@ -124,9 +124,9 @@ public class Logica {
 
             if (this.parametrosCargados.get(cte.POS_SUBCOM).equals(cte.MES)){
                 System.out.println("Sobre mes");
-                cargarServicio();
+                pedirServicio();
                 cargarMes();
-                mostrarServicio();
+                mostrarMes();
                 return true;
             } else if (this.parametrosCargados.get(cte.POS_SUBCOM).equals(cte.SERVICIO)){
                 System.out.println("sobre servicio");
@@ -171,6 +171,10 @@ public class Logica {
     /*mostrar el servicio*/
     private void mostrarServicio(){
         System.out.println("Ingresaste: "+this.servicios.toString());
+    }
+    /*mostrar el mes*/
+    private void mostrarMes(){
+        System.out.println("Ingresaste: "+this.mes.toString());
     }
 
     /*Para cargar mes. No necesita id
