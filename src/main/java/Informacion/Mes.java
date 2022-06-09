@@ -1,16 +1,17 @@
 package Informacion;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 
 public class Mes {
     private int idMes;
     private Servicios servicio;
-    private Calendar fechaPago;
+    private LocalDate fechaPago;
     private double pago;
 
 //    Para generar mes. no tiene idMes
-    public Mes(Servicios servicio, Calendar fechaPago, double pago) {
+    public Mes(Servicios servicio, LocalDate fechaPago, double pago) {
         this.servicio = servicio;
         this.fechaPago = fechaPago;
         this.pago = pago;
@@ -18,7 +19,7 @@ public class Mes {
 
 
 //    Para ver / modificar / eliminar un mes cargado. tiene idMes
-    public Mes(int idMes, Servicios servicio, Calendar fechaPago, double pago) {
+    public Mes(int idMes, Servicios servicio, LocalDate fechaPago, double pago) {
         this.idMes = idMes;
         this.servicio = servicio;
         this.fechaPago = fechaPago;
@@ -62,11 +63,11 @@ public class Mes {
         this.servicio = servicio;
     }
 
-    public Calendar getFechaPago() {
+    public LocalDate getFechaPago() {
         return this.fechaPago;
     }
 
-    public void setFechaPago(Calendar fechaPago) {
+    public void setFechaPago(LocalDate fechaPago) {
         this.fechaPago = fechaPago;
     }
 
