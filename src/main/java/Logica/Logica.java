@@ -4,10 +4,8 @@ import Informacion.Constantes;
 import Informacion.Mes;
 import Informacion.Servicios;
 
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 public class Logica {
     Constantes cte = new Constantes();
@@ -29,6 +27,7 @@ public class Logica {
     boolean estadoPrograma = false;
     boolean esParametroCompuesto;
     private StringBuilder acumulador;
+    private int posicionActual;
 
     public Logica(){
         this.estadoPrograma = false;
@@ -94,6 +93,17 @@ public class Logica {
         }
     }
 
+    /*Devueelve el parametro actual de parametrosCargados*/
+    private String parametroActual(){
+        return parametrosCargados.get(this.posicionActual);
+    }
+
+    /*Obtener el siguiente parametro de parametrosCargados*/
+    private String siguienteParametro(){
+        this.posicionActual++;
+        return parametrosCargados.get(this.posicionActual);
+    }
+
     private boolean verificarComando(){
         if (this.parametrosCargados.get(cte.POS_COM).equals(cte.NUEVO)){
             System.out.println("hacer Nuevo");
@@ -115,6 +125,8 @@ public class Logica {
     private boolean verificarSubComando(){
 
         try {
+
+            this.posicionActual = cte.POS_DATOS;
 
             if (this.parametrosCargados.get(cte.POS_SUBCOM).equals(cte.MES)){
                 System.out.println("Sobre mes");
@@ -149,11 +161,11 @@ public class Logica {
 /*    Para cargar servicio. no necesita id
     2 - nombre*/
     private void cargarServicio(){
-        this.servicios = new Servicios(this.parametrosCargados.get(cte.POS_SERV_NOM));
+        this.servicios = new Servicios(parametroActual());
     }
     /*Para pedir servicio. necesita id*/
     private void pedirServicio(){
-        int id = Integer.parseInt(this.parametrosCargados.get(cte.POS_SERV_ID));
+        int id = Integer.parseInt(parametroActual());
         String nombre = this.parametrosCargados.get(cte.POS_SERV_NOM);
         this.servicios = new Servicios(nombre, id);
     }
