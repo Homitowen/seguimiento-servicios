@@ -35,8 +35,7 @@ public class Logica {
     public Logica(String lineaEntrada) {
         this.lineaEntrada = lineaEntrada;
         armarParametros();
-        verificarComando();
-        verificarSubComando();
+        comandoElegido();
     }
 
     /*Tengo que lograr:
@@ -98,54 +97,53 @@ public class Logica {
         return parametrosCargados.get(this.posicionActual);
     }
 
-    private boolean verificarComando(){
-        if (this.parametrosCargados.get(cte.POS_COM).equals(cte.NUEVO)){
+    private void comandoElegido(){
+        this.posicionActual = cte.POS_OPERACION;
+
+        if (parametroActual().equals(cte.NUEVO)){
             System.out.println("hacer Nuevo");
-            return true;
-        } else if (this.parametrosCargados.get(cte.POS_COM).equals(cte.MODIFICAR)){
+            if (siguienteParametro().equals(cte.SERVICIO)){
+                System.out.println("Sobre Servicio");
+                cargarServicio();
+                mostrarServicio();
+            } else if (parametroActual().equals(cte.MES)){
+                System.out.println("Sobre Mes");
+                cargarMes();
+                mostrarMes();
+            } else {
+                System.out.println("ERROR NUEVO");
+            }
+        } else if (parametroActual().equals(cte.MODIFICAR)){
             System.out.println("hacer Modificacion");
-            return true;
-        } else if (this.parametrosCargados.get(cte.POS_COM).equals(cte.ELIMINAR)){
+            if (siguienteParametro().equals(cte.SERVICIO)){
+                System.out.println("Sobre Servicio");
+                cargarServicio();
+                mostrarServicio();
+            } else if (parametroActual().equals(cte.MES)){
+                System.out.println("Sobre Mes");
+                cargarMes();
+                mostrarMes();
+            } else {
+                System.out.println("ERROR MODIFICAR");
+            }
+        } else if (parametroActual().equals(cte.ELIMINAR)){
             System.out.println("hacer Eliminacion");
-            return true;
-        } else if (this.parametrosCargados.get(cte.POS_COM).equals(cte.SALIR_PROGRAMA)){
+            if (siguienteParametro().equals(cte.SERVICIO)){
+                System.out.println("Sobre Servicio");
+                cargarServicio();
+                mostrarServicio();
+            } else if (parametroActual().equals(cte.MES)){
+                System.out.println("Sobre Mes");
+                cargarMes();
+                mostrarMes();
+            } else {
+                System.out.println("ERROR ELIMINAR");
+            }
+        } else if (parametroActual().equals(cte.SALIR_PROGRAMA)){
             System.out.println("Saliendo .........");
         } else {
             System.out.println("Comando Error");
         }
-        return false;
-    }
-
-    private boolean verificarSubComando(){
-
-        try {
-
-            this.posicionActual = cte.POS_DATOS;
-
-            if (this.parametrosCargados.get(cte.POS_SUBCOM).equals(cte.MES)){
-                System.out.println("Sobre mes");
-                pedirServicio();
-                cargarMes();
-                mostrarMes();
-                return true;
-            } else if (this.parametrosCargados.get(cte.POS_SUBCOM).equals(cte.SERVICIO)){
-                System.out.println("sobre servicio");
-                cargarServicio();
-                mostrarServicio();
-                return true;
-            } else if (this.parametrosCargados.get(cte.POS_SUBCOM).equals(cte.PAGO)){
-                System.out.println("sobre pago");
-                return true;
-            } else {
-                System.out.println("Subcomando Error");
-            }
-            return false;
-
-        } catch (Exception e){
-            System.out.println("Faltó subcomando");
-        }
-
-        return false;
     }
 
     private boolean verificarLetras(){
@@ -159,11 +157,11 @@ public class Logica {
 /*    Para cargar servicio. no necesita id
     2 - nombre*/
     private void cargarServicio(){
-        this.servicios = new Servicios(parametroActual());
+        this.servicios = new Servicios(siguienteParametro());
     }
     /*Para pedir servicio. necesita id*/
     private void pedirServicio(){
-        int id = Integer.parseInt(parametroActual());
+        int id = Integer.parseInt(siguienteParametro());
         String nombre = siguienteParametro();
         this.servicios = new Servicios(nombre, id);
     }
@@ -181,6 +179,7 @@ public class Logica {
     * 2 - fecha
     * 3 - pago*/
     private void cargarMes(){
+        pedirServicio();
         LocalDate fecha = LocalDate.parse(siguienteParametro());
         double pago = Double.parseDouble(siguienteParametro());
         this.mes = new Mes(this.servicios, fecha, pago);
