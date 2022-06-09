@@ -12,11 +12,7 @@ public class Logica {
     String lineaEntrada;
 
     ArrayList<String> codigoSeparado = new ArrayList<String>();
-    ArrayList<String> parametrosCargados;
-
-    {
-        parametrosCargados = new ArrayList<String>(cte.MAX_PARAMETROS);
-    }
+    ArrayList<String> parametrosCargados = new ArrayList<>();
 
     StringBuilder unParametro;
 
