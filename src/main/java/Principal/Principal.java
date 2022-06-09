@@ -23,6 +23,7 @@ public class Principal {
 
             logica.mostrarParametros();
 
+
         }
 
 

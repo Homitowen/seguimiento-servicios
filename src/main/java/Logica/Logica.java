@@ -10,11 +10,16 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class Logica {
-
+    Constantes cte = new Constantes();
     String lineaEntrada;
 
     ArrayList<String> codigoSeparado = new ArrayList<String>();
-    ArrayList<String> parametrosCargados = new ArrayList<String>();
+    ArrayList<String> parametrosCargados;
+
+    {
+        parametrosCargados = new ArrayList<String>(cte.MAX_PARAMETROS);
+    }
+
     StringBuilder unParametro;
 
     Servicios servicios;
@@ -23,7 +28,6 @@ public class Logica {
 
     boolean estadoPrograma = false;
     boolean esParametroCompuesto;
-    Constantes cte = new Constantes();
     private StringBuilder acumulador;
 
     public Logica(){
@@ -91,16 +95,16 @@ public class Logica {
     }
 
     private boolean verificarComando(){
-        if (this.parametrosCargados.get(0).equals(cte.NUEVO)){
+        if (this.parametrosCargados.get(cte.POS_COM).equals(cte.NUEVO)){
             System.out.println("hacer Nuevo");
             return true;
-        } else if (this.parametrosCargados.get(0).equals(cte.MODIFICAR)){
+        } else if (this.parametrosCargados.get(cte.POS_COM).equals(cte.MODIFICAR)){
             System.out.println("hacer Modificacion");
             return true;
-        } else if (this.parametrosCargados.get(0).equals(cte.ELIMINAR)){
+        } else if (this.parametrosCargados.get(cte.POS_COM).equals(cte.ELIMINAR)){
             System.out.println("hacer Eliminacion");
             return true;
-        } else if (this.parametrosCargados.get(0).equals(cte.SALIR_PROGRAMA)){
+        } else if (this.parametrosCargados.get(cte.POS_COM).equals(cte.SALIR_PROGRAMA)){
             System.out.println("Saliendo .........");
         } else {
             System.out.println("Comando Error");
@@ -112,13 +116,14 @@ public class Logica {
 
         try {
 
-            if (this.parametrosCargados.get(1).equals(cte.MES)){
+            if (this.parametrosCargados.get(cte.POS_SUBCOM).equals(cte.MES)){
                 System.out.println("Sobre mes");
                 return true;
-            } else if (this.parametrosCargados.get(1).equals(cte.SERVICIO)){
+            } else if (this.parametrosCargados.get(cte.POS_SUBCOM).equals(cte.SERVICIO)){
                 System.out.println("sobre servicio");
+                cargarServicio();
                 return true;
-            } else if (this.parametrosCargados.get(1).equals(cte.PAGO)){
+            } else if (this.parametrosCargados.get(cte.POS_SUBCOM).equals(cte.PAGO)){
                 System.out.println("sobre pago");
                 return true;
             } else {
@@ -144,14 +149,26 @@ public class Logica {
 /*    Para cargar servicio. no necesita id
     2 - nombre*/
     private void cargarServicio(){
-        this.servicios = new Servicios(this.parametrosCargados.get(3),Integer.parseInt(this.parametrosCargados.get(2)));
+        this.servicios = new Servicios(this.parametrosCargados.get(cte.POS_SERV_NOM));
     }
+    /*Para pedir servicio. necesita id*/
+    private void pedirServicio(){
+        int id = Integer.parseInt(this.parametrosCargados.get(cte.POS_SERV_ID));
+        String nombre = this.parametrosCargados.get(cte.POS_SERV_NOM);
+        this.servicios = new Servicios(nombre, id);
+    }
+
+    /*mostrar el servicio*/
+    private void mostrarServicio(){
+        System.out.println("Ingresaste: "+this.servicios.toString());
+    }
+
     /*Para cargar mes. No necesita id
     * 2 - fecha
     * 3 - pago*/
     private void cargarMes(){
-        LocalDate fecha = LocalDate.parse(this.parametrosCargados.get(3));
-        double pago = Double.parseDouble(this.parametrosCargados.get(4));
+        LocalDate fecha = LocalDate.parse(this.parametrosCargados.get(cte.POS_MES_FECHA));
+        double pago = Double.parseDouble(this.parametrosCargados.get(cte.POS_MES_PAGO));
         this.mes = new Mes(this.servicios, fecha, pago);
     }
     /*Para pedir mes. necesita id
@@ -159,10 +176,10 @@ public class Logica {
     * 3 - fecha
     * 4 - pago*/
     private void pedirMes(){
-        local
+        int id = Integer.parseInt(this.parametrosCargados.get(cte.POS_MES_ID));
         LocalDate fecha = LocalDate.parse(this.parametrosCargados.get(3));
         double pago = Double.parseDouble(this.parametrosCargados.get(4));
-        this.mes = new Mes(this.servicios, fecha, pago);
+        this.mes = new Mes(id, this.servicios, fecha, pago);
     }
 
     public String getLineaEntrada() {
