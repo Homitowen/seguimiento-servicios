@@ -124,7 +124,8 @@ public class Logica {
 
             if (this.parametrosCargados.get(cte.POS_SUBCOM).equals(cte.MES)){
                 System.out.println("Sobre mes");
-                pedirServicio();
+                cargarServicio();
+                cargarMes();
                 mostrarServicio();
                 return true;
             } else if (this.parametrosCargados.get(cte.POS_SUBCOM).equals(cte.SERVICIO)){
