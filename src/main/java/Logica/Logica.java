@@ -2,7 +2,6 @@ package Logica;
 
 import Informacion.Constantes;
 import Informacion.Mes;
-import Informacion.Pagos;
 import Informacion.Servicios;
 
 import java.lang.reflect.Array;
@@ -18,7 +17,6 @@ public class Logica {
     StringBuilder unParametro;
 
     Servicios servicios;
-    Pagos pagos;
     Mes mes;
 
 
@@ -142,20 +140,17 @@ public class Logica {
         return true;
     }
 
-
 /*    Para cargar servicio
     2 - id
     3 - nombre*/
     private void cargarServicio(){
         this.servicios = new Servicios(this.parametrosCargados.get(3),Integer.parseInt(this.parametrosCargados.get(2)));
     }
-    /*Para cargar pago
-    * 2- fecha
-    * 3- pago*/
-    private void cargarPago(){
-        this.pagos = new Pagos(Calendar.this.parametrosCargados.get(2))
-    }
+    /*Para cargar mes*/
+    private void cargarMes(){
 
+        this.mes = new Mes(this.servicios,() this.parametrosCargados.get(2))
+    }
 
     public String getLineaEntrada() {
         return this.lineaEntrada;
