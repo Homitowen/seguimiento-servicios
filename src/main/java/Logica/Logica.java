@@ -5,6 +5,7 @@ import Informacion.Mes;
 import Informacion.Servicios;
 
 import java.lang.reflect.Array;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -140,16 +141,28 @@ public class Logica {
         return true;
     }
 
-/*    Para cargar servicio
-    2 - id
-    3 - nombre*/
+/*    Para cargar servicio. no necesita id
+    2 - nombre*/
     private void cargarServicio(){
         this.servicios = new Servicios(this.parametrosCargados.get(3),Integer.parseInt(this.parametrosCargados.get(2)));
     }
-    /*Para cargar mes*/
+    /*Para cargar mes. No necesita id
+    * 2 - fecha
+    * 3 - pago*/
     private void cargarMes(){
-
-        this.mes = new Mes(this.servicios,() this.parametrosCargados.get(2))
+        LocalDate fecha = LocalDate.parse(this.parametrosCargados.get(3));
+        double pago = Double.parseDouble(this.parametrosCargados.get(4));
+        this.mes = new Mes(this.servicios, fecha, pago);
+    }
+    /*Para pedir mes. necesita id
+    * 2 - id
+    * 3 - fecha
+    * 4 - pago*/
+    private void pedirMes(){
+        local
+        LocalDate fecha = LocalDate.parse(this.parametrosCargados.get(3));
+        double pago = Double.parseDouble(this.parametrosCargados.get(4));
+        this.mes = new Mes(this.servicios, fecha, pago);
     }
 
     public String getLineaEntrada() {
