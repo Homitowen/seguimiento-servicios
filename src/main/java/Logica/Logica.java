@@ -153,7 +153,7 @@ public class Logica {
 /*    Para cargar servicio. no necesita id
     2 - nombre*/
     private void cargarServicio(){
-        this.servicios = new Servicios(siguienteParametro());
+        this.servicios = new Servicios(siguienteParametro(), siguienteParametro());
     }
     /*Para pedir servicio. necesita id*/
     private void pedirServicio(){

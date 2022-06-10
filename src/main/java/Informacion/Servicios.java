@@ -3,10 +3,12 @@ package Informacion;
 public class Servicios {
     private String nombre;
     private int id_Servicio;
+    private String enlaceWeb;
 
 //    Para cuando se crean
-    public Servicios(String nombre) {
+    public Servicios(String nombre, String enlaceWeb) {
         this.nombre = nombre;
+        this.enlaceWeb = enlaceWeb;
     }
 
 //    Para cuando necesito acceder a ellos
@@ -31,11 +33,20 @@ public class Servicios {
         this.id_Servicio = id_Servicio;
     }
 
+    public String getEnlaceWeb() {
+        return this.enlaceWeb;
+    }
+
+    public void setEnlaceWeb(String enlaceWeb) {
+        this.enlaceWeb = enlaceWeb;
+    }
+
     @Override
     public String toString() {
         return "Servicios{" +
                 "nombre='" + nombre + '\'' +
-                ", id_Servicio=" + id_Servicio +
+                ", id_Servicio=" + id_Servicio + "" +
+                ", enlace=" + enlaceWeb +
                 '}';
     }
 }
