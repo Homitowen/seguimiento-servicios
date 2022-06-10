@@ -214,11 +214,18 @@ public class Logica {
                 System.out.println("no es DOUBLE");
             }
         }
+
         arreglado = new StringBuilder(dato);
-//        dejar un punto
-        for (int i = 0; i < posicion.size()-1; i++){
-            arreglado = arreglado.deleteCharAt(posicion.get(i));
+        while (contador > 1){
+            for (int i = 0; i <= arreglado.length(); i++){
+                if (arreglado.charAt(i) == '.'){
+                    arreglado.deleteCharAt(i);
+                    contador--;
+                    break;
+                }
+            }
         }
+
         return Double.parseDouble(arreglado.toString());
     }
 
